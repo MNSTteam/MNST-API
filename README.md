@@ -29,6 +29,7 @@ http://95.216.6.249:8841/convertmx?wlt=_
 
 10) /revents - Информация по всем ревардам начисленным по конкретному блоку в разрезе валидатора и типов ревардов
 /revents?height=_
-            
+
+PS: Инструкция по установке в INSTALLINFO.md
     
-PS: Minter Address for donates Mx61d52dea150beb1de2a1bd24c556d2750534b5e4
+PSPS: Благодарности сюда Mx61d52dea150beb1de2a1bd24c556d2750534b5e4
