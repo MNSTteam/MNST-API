@@ -8,7 +8,6 @@
 	"mevents":                rpcserver.NewRPCFunc(mEvents, "height,find_ui"),
 	"convertmx":              rpcserver.NewRPCFunc(MXconvert, "wlt"),
 	"revents":                rpcserver.NewRPCFunc(rEvents, "height"),
-	"frozzen":      	  rpcserver.NewRPCFunc(Frozzen, "address"),
 	"slashed":      	  rpcserver.NewRPCFunc(AllSlashed, "height"),
 
 	
