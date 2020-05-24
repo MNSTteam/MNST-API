@@ -113,8 +113,8 @@ func MakeAddressBalance(height int, address types.Address) (*AddressBalanceRespo
 						fmt.Sscan(res.BipValue, t4)
 						t1.Add(t1,t3)
 						t2.Add(t2,t4)
-						res.Value = t1.String()
-						res.BipValue = t2.String()						
+						response.Delegated[i].Value = t1.String()
+						response.Delegated[i].BipValue = t2.String()						
 						coinfound = true	
 						break
 					}
