@@ -31,10 +31,8 @@ type AddressesBalancesResponse struct {
 
 
 
-func CustomCoinBipBalance(coinToSellString string, valueToSell *big.Int, height int)(*big.Int) {
-cState, err := GetStateForHeight(height)
-	err = err
-
+func CustomCoinBipBalance(coinToSellString string, valueToSell *big.Int, cState *state.State)(*big.Int) {
+	
 	var result *big.Int
 
 	coinToSell := types.StrToCoinSymbol(coinToSellString)
@@ -85,7 +83,7 @@ func MakeAddressBalance(height int, address types.Address) (*AddressBalanceRespo
 	coinsbipvalue := big.NewInt(0)
 
 	for coin, value := range balances {
-		result := CustomCoinBipBalance(coin.String(), value, height)
+		result := CustomCoinBipBalance(coin.String(), value, cState)
 		freecoin:=CoinBalance{
 			Coin: 		coin.String(),
 			Value: 		value.String(),
@@ -158,7 +156,7 @@ func MakeAddressBalance(height int, address types.Address) (*AddressBalanceRespo
 	for i, coin := range response.Total {
 		value:=big.NewInt(0)
 		fmt.Sscan(coin.Value, value)
-		result := CustomCoinBipBalance(coin.Coin, value, height)
+		result := CustomCoinBipBalance(coin.Coin, value, cState)
 
 		if coinsbipvalue == nil {
 			coinsbipvalue = result 
