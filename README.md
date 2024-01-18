@@ -2,10 +2,10 @@
 
 1) mnst/get_stakes?   - allows obtaining all stakes based on any of the three parameters or their combinations.
 
-              pub_key - выведет все стейки в конкретной мастерноде
+              pub_key - displays all stakes in a current masternode
               https://api-minter.mnst.club/mnst/get_stakes?pubkey=Mp46d3d6afe0084fcf530b03d1f4427e516a1cb4ec542640bcbc84c2c4b4f53c1
    
-              coin - displays all stakes in a current masternode.
+              coin - displays all stakes of a current coin.
               https://api-minter.mnst.club/mnst/get_stakes?coin=MNST
 
               address - finds all stakes of a current wallet.
