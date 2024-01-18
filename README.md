@@ -1,29 +1,33 @@
 # MNST-API
 
-1) /get_stakes   - позволяет получить все стейки по любым из трех параметров или их комбинациям
+1) /get_stakes?   - позволяет получить все стейки по любым из трех параметров или их комбинациям
 
               pub_key - выведет все стейки в конкретной мастерноде
-              https://api-minter.mnst.club/mnst/get_stakes?pub_key=Mp46d3d6afe0084fcf530b03d1f4427e516a1cb4ec542640bcbc84c2c4b4f53c13
-
+              https://api-minter.mnst.club/mnst/get_stakes?pubkey=Mp46d3d6afe0084fcf530b03d1f4427e516a1cb4ec542640bcbc84c2c4b4f53c1
+   
               coin - покажет все стейки в определенной монете
               https://api-minter.mnst.club/mnst/get_stakes?coin=MNST
 
               address - найдет все стейки определенного кошелька
-             https://api-minter.mnst.club/mnst/get_stakes?address=Mx6a2a8335129e499fcd006da9ef1b9896b2c101fd
+              https://api-minter.mnst.club/mnst/get_stakes?address=Mx6a2a8335129e499fcd006da9ef1b9896b2c101fd
 
-             pub_key=_&coin=_&address=_ - параметры можно комбинировать любым удобным способом, к примеру получить список стейков MonsterNode в монете TAXFREE или вообще не указать ни одного параметра и получить список всех стейков во всех нодах, но учитывайте что крайний вариант весьма ресурсоемкий и зачастую приемлем только при локальном использовании.
-             https://api-minter.mnst.club/mnst/get_stakes?pub_key=Mp46d3d6afe0084fcf530b03d1f4427e516a1cb4ec542640bcbc84c2c4b4f53c13&coin=TAXFREE
+             pubkey=_&coin=_&address=_ - параметры можно комбинировать любым удобным способом, к примеру получить список стейков MonsterNode в монете TAXFREE или вообще не указать ни одного параметра и получить список всех стейков во всех нодах, но учитывайте что крайний вариант весьма ресурсоемкий и зачастую приемлем только при локальном использовании.
+             https://api-minter.mnst.club/mnst/get_stakes?pubkey=Mp46d3d6afe0084fcf530b03d1f4427e516a1cb4ec542640bcbc84c2c4b4f53c13&coin=TAXFREE
              https://api-minter.mnst.club/mnst/get_stakes
 
-2) /total_slashed - выдаст bip_value всех монет сожженных в сети. Просили - сделал.
-            https://api-minter.mnst.club/mnst/total_slashed
-
-3) /height_by_time - один из моих любимых методов позволяющий определить номер блока какой блок был сутки или неделю назад, или 30 апреля в 5 часов 44 минуты 22 секунды. Метод высвобождает весьма приличный объем ресурсов необходимых для хранения такого бесполезного параметра как время создания блока в своей базе данных и позволяет настроить индекс по номеру блока. Очень полезен для рейтингов и прочих сервисов, которым необходимо сравнение данных к примеру текущих и сутки назад.
+2) /height_by_time? - один из моих любимых методов позволяющий определить номер блока который был сутки или неделю назад, или 01 января в 00 часов 00 минут 01 секунду. Метод высвобождает весьма приличный объем ресурсов необходимых для хранения такого бесполезного параметра как время создания блока в своей базе данных и позволяет настроить индекс по номеру блока. Очень полезен для рейтингов и прочих сервисов, которым необходимо сравнение данных к примеру текущих и сутки назад.
             https://api-minter.mnst.club/mnst/height_by_time?query=day
             https://api-minter.mnst.club/mnst/height_by_time?query=week
-            https://api-minter.mnst.club/mnst/height_by_time?query=2020-04-30T05:44:22Z
+            https://api-minter.mnst.club/mnst/height_by_time?query=2024-01-01T00:00:01Z
 
-4) /frozzed - еще один метод о котором меня просили многие разработчики. Без дополнительных параметров выдает все "замороженные" средства - unbounds,проверяет есть ли анбоунды по конкретному кошельку или монете.
+3) /address/ - подробный баланс кошелька с учетом всех доступных типов наличия монет։ FREEFLOAT, DELEGATE, WAITLIST, FROZEN, ORDERS, LIQUIDITY        
+            https://api-minter.mnst.club/mnst/address/Mxaa1eb05ade73bc78ad4828f8c78f84c3af4ec1ea
+
+4) /get_coins_info? - мультизапрос информации о монетах по их id. Очень удобный метод позволяющий одним запросом получить общую информацию о нескольких монетах.
+  https://api-minter.mnst.club/mnst/get_coins_info?ids=40,50,80
+
+
+6) /frozzed - еще один метод о котором меня просили многие разработчики. Без дополнительных параметров выдает все "замороженные" средства - unbounds,проверяет есть ли анбоунды по конкретному кошельку или монете.
             https://api-minter.mnst.club/mnst/frozzed
             https://api-minter.mnst.club/mnst/frozzed?address=Mxaa1eb05ade73bc78ad4828f8c78f84c3af4ec1ea
             https://api-minter.mnst.club/mnst/frozzed?coin=MNST
