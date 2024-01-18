@@ -33,9 +33,13 @@
        https://api-minter.mnst.club/mnst/coin_info?symbol=HUB&pools=true
    
 6) mnst/coins_list - The method will output a list of all coins created in Minter with general information about the coins.
+   
         https://api-minter.mnst.club/mnst/coins_list
 
-7) mnst/rating - A query providing aggregate information about all nodes in the Minter network.
+8) mnst/rating - A query providing aggregate information about all nodes in the Minter network.
+   
         https://api-minter.mnst.club/mnst/rating
-8) mnst/pools_coin_list -  List and parameters of all LP-tokens.
+   
+9) mnst/pools_coin_list -  List and parameters of all LP-tokens.
+   
         https://api-minter.mnst.club/mnst/pools_coin_list
