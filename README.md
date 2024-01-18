@@ -3,40 +3,40 @@
 1) /get_stakes   - позволяет получить все стейки по любым из трех параметров или их комбинациям
 
               pub_key - выведет все стейки в конкретной мастерноде
-              [http://195.201.244.41:8841/](https://api-minter.mnst.club/mnst/)get_stakes?pub_key=Mp46d3d6afe0084fcf530b03d1f4427e516a1cb4ec542640bcbc84c2c4b4f53c13
+              https://api-minter.mnst.club/mnst/get_stakes?pub_key=Mp46d3d6afe0084fcf530b03d1f4427e516a1cb4ec542640bcbc84c2c4b4f53c13
 
               coin - покажет все стейки в определенной монете
-              [http://195.201.244.41:8841/](https://api-minter.mnst.club/mnst/)get_stakes?coin=MNST
+              https://api-minter.mnst.club/mnst/get_stakes?coin=MNST
 
               address - найдет все стейки определенного кошелька
-              [http://195.201.244.41:8841/](https://api-minter.mnst.club/mnst/)get_stakes?address=Mx6a2a8335129e499fcd006da9ef1b9896b2c101fd
+             https://api-minter.mnst.club/mnst/get_stakes?address=Mx6a2a8335129e499fcd006da9ef1b9896b2c101fd
 
              pub_key=_&coin=_&address=_ - параметры можно комбинировать любым удобным способом, к примеру получить список стейков MonsterNode в монете TAXFREE или вообще не указать ни одного параметра и получить список всех стейков во всех нодах, но учитывайте что крайний вариант весьма ресурсоемкий и зачастую приемлем только при локальном использовании.
-             [http://195.201.244.41:8841/](https://api-minter.mnst.club/mnst/)get_stakes?pub_key=Mp46d3d6afe0084fcf530b03d1f4427e516a1cb4ec542640bcbc84c2c4b4f53c13&coin=TAXFREE
-             [http://195.201.244.41:8841/](https://api-minter.mnst.club/mnst/)get_stakes
+             https://api-minter.mnst.club/mnst/get_stakes?pub_key=Mp46d3d6afe0084fcf530b03d1f4427e516a1cb4ec542640bcbc84c2c4b4f53c13&coin=TAXFREE
+             https://api-minter.mnst.club/mnst/get_stakes
 
 2) /total_slashed - выдаст bip_value всех монет сожженных в сети. Просили - сделал.
-             [http://195.201.244.41:8841/](https://api-minter.mnst.club/mnst/)total_slashed
+            https://api-minter.mnst.club/mnst/total_slashed
 
 3) /height_by_time - один из моих любимых методов позволяющий определить номер блока какой блок был сутки или неделю назад, или 30 апреля в 5 часов 44 минуты 22 секунды. Метод высвобождает весьма приличный объем ресурсов необходимых для хранения такого бесполезного параметра как время создания блока в своей базе данных и позволяет настроить индекс по номеру блока. Очень полезен для рейтингов и прочих сервисов, которым необходимо сравнение данных к примеру текущих и сутки назад.
-            [http://195.201.244.41:8841/](https://api-minter.mnst.club/mnst/)height_by_time?query=day
-            [http://195.201.244.41:8841/](https://api-minter.mnst.club/mnst/)height_by_time?query=week
-            [http://195.201.244.41:8841/](https://api-minter.mnst.club/mnst/)height_by_time?query=2020-04-30T05:44:22Z
+            https://api-minter.mnst.club/mnst/height_by_time?query=day
+            https://api-minter.mnst.club/mnst/height_by_time?query=week
+            https://api-minter.mnst.club/mnst/height_by_time?query=2020-04-30T05:44:22Z
 
 4) /frozzed - еще один метод о котором меня просили многие разработчики. Без дополнительных параметров выдает все "замороженные" средства - unbounds,проверяет есть ли анбоунды по конкретному кошельку или монете.
-            [http://195.201.244.41:8841/](https://api-minter.mnst.club/mnst/)frozzed
-            [http://195.201.244.41:8841/](https://api-minter.mnst.club/mnst/)frozzed?address=Mxaa1eb05ade73bc78ad4828f8c78f84c3af4ec1ea
-            [http://195.201.244.41:8841/](https://api-minter.mnst.club/mnst/)frozzed?coin=MNST
+            https://api-minter.mnst.club/mnst/frozzed
+            https://api-minter.mnst.club/mnst/frozzed?address=Mxaa1eb05ade73bc78ad4828f8c78f84c3af4ec1ea
+            https://api-minter.mnst.club/mnst/frozzed?coin=MNST
 
 7) /address_balance - подробный баланс кошелька с учетом количества и стоимости всех имеющихся и делегированных монет во все ноды (может использоваться как с параметром height=, так и без)
-                  [http://195.201.244.41:8841/](https://api-minter.mnst.club/mnst/)address_balance?address=Mxa64c6e11840b2cdc6a8320342e07b10f69628885
+                  https://api-minter.mnst.club/mnst/address_balance?address=Mxa64c6e11840b2cdc6a8320342e07b10f69628885
 
 Идеальный метод для сервисов кошельков. Выдает информацию быстро и сразу рассчитывает стоимость каждой кастомной монеты в bip и общую стоимость всех монет на кошельке с учетом делегированных.
 
 Просто идеально. Один запрос и сразу вся нужная информация.
 
 8) /candidate_info - метод позволяющий получить подробную информацию о конкретном кандидате, к примеру MonsterNode. 
-[http://195.201.244.41:8841/](https://api-minter.mnst.club/mnst/)candidate_info?pub_key=Mp46d3d6afe0084fcf530b03d1f4427e516a1cb4ec542640bcbc84c2c4b4f53c13
+        https://api-minter.mnst.club/mnst/candidate_info?pub_key=Mp46d3d6afe0084fcf530b03d1f4427e516a1cb4ec542640bcbc84c2c4b4f53c13
 
 От предыдущей версии отличается тем что был оптимизирован код и произведено деление кандидатов на 3 типа: 
 
@@ -49,21 +49,21 @@
 Напомню что в базовой версии candidate в параметре status только 2 значения.
 
 9) /candidates_info - метод аналогичный предыдущему, но выводит ни одного, а сразу всех кандидатов, валидаторов и претендентов. А можно вывести к примеру только тех кто является валидатором или тех кто готов валидировать, но ему не хватает стейка, для этого можно указать status.
-               [ http://195.201.244.41:8841/](https://api-minter.mnst.club/mnst/)candidates_info
-               [http://195.201.244.41:8841/](https://api-minter.mnst.club/mnst/)candidates_info?status=3
-               [http://195.201.244.41:8841/](https://api-minter.mnst.club/mnst/)candidates_info?status=2
+              https://api-minter.mnst.club/mnst/candidates_info
+               https://api-minter.mnst.club/mnst/candidates_info?status=3
+              https://api-minter.mnst.club/mnst/candidates_info?status=2
 
 10) /nosign - удобен для сбора данных о том кто не подписал конкретный блок. Способ легче и быстрее чем запрашивать всю информацию о блоке и обрабатывать ее. Дополнительно выдает информацию о том кто являлся пропоузером блока когда кто то пропустил.
-                [http://195.201.244.41:8841/](https://api-minter.mnst.club/mnst/)nosign?height=1419481
+                https://api-minter.mnst.club/mnst/nosign?height=1419481
 
 11) /txs_from_block - аналогично предыдущему методу выдает только нужное, что облегчает запрос относительно /block и ускоряет получение данных. Незначительно, но все же на 100к запросов экономия времени составит порядка 35%. Мелочи заметны в тираже.
-                [http://195.201.244.41:8841/](https://api-minter.mnst.club/mnst/)txs_from_block?height=1000000
+                https://api-minter.mnst.club/mnst/txs_from_block?height=1000000
 12) /find_events - поиск eventов по кошельку или PublicKey валидатора, или по тому и другому в конкретном блоке
 
 Мультизапрос удобен тем что можно выводить и парсить не все events сети на конкретный блок, а только те которые необходимы, например по конкретному кошельку или нескольким кошелькам или валидатору, а можно и в комбинированном варианте.
-               [ http://195.201.244.41:8841/](https://api-minter.mnst.club/mnst/)find_events?height=1425960&find=[%22Mxa64c6e11840b2cdc6a8320342e07b10f69628885%22,%22Mp46d3d6afe0084fcf530b03d1f4427e516a1cb4ec542640bcbc84c2c4b4f53c13%22]
+              https://api-minter.mnst.club/mnst/find_events?height=1425960&find=[%22Mxa64c6e11840b2cdc6a8320342e07b10f69628885%22,%22Mp46d3d6afe0084fcf530b03d1f4427e516a1cb4ec542640bcbc84c2c4b4f53c13%22]
 Фишка запроса что при разумном использовании он быстрее родителя /events раз в 50-100, т.к. обрабатывает и выводит только НЕОБХОДИМЫЕ данные.
 
 13) /grouped_events - Информация по распределению наград с валидирования по конкретному блоку в разрезе валидатора и типов ревардов
-                [http://195.201.244.41:8841/](https://api-minter.mnst.club/mnst/)grouped_events?height=1425960
+               https://api-minter.mnst.club/mnst/grouped_events?height=1425960
 Один из самый странных запросов, но может быть применим для ряда сервисов для более быстрого и удобного парсинга сгруппированных данных по ревардам. Шустрее родителя раз в 200 за счет того что не выводит слайсы по каждому реварду
