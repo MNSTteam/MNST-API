@@ -1,73 +1,41 @@
 # MNST-API
 
-1) /get_stakes?   - позволяет получить все стейки по любым из трех параметров или их комбинациям
+1) mnst/get_stakes?   - allows obtaining all stakes based on any of the three parameters or their combinations.
 
               pub_key - выведет все стейки в конкретной мастерноде
               https://api-minter.mnst.club/mnst/get_stakes?pubkey=Mp46d3d6afe0084fcf530b03d1f4427e516a1cb4ec542640bcbc84c2c4b4f53c1
    
-              coin - покажет все стейки в определенной монете
+              coin - displays all stakes in a current masternode.
               https://api-minter.mnst.club/mnst/get_stakes?coin=MNST
 
-              address - найдет все стейки определенного кошелька
+              address - finds all stakes of a current wallet.
               https://api-minter.mnst.club/mnst/get_stakes?address=Mx6a2a8335129e499fcd006da9ef1b9896b2c101fd
 
-             pubkey=_&coin=_&address=_ - параметры можно комбинировать любым удобным способом, к примеру получить список стейков MonsterNode в монете TAXFREE или вообще не указать ни одного параметра и получить список всех стейков во всех нодах, но учитывайте что крайний вариант весьма ресурсоемкий и зачастую приемлем только при локальном использовании.
+             pubkey=_&coin=_&address=_ - You can combine parameters in any convenient way. For example, you can get a list of stakes in the MonsterNode for the TAXFREE coin, or not specify any parameters at all to get a list of all stakes in all nodes. However, keep in mind that the latter option is resource-intensive and is often acceptable only for local use.
              https://api-minter.mnst.club/mnst/get_stakes?pubkey=Mp46d3d6afe0084fcf530b03d1f4427e516a1cb4ec542640bcbc84c2c4b4f53c13&coin=TAXFREE
              https://api-minter.mnst.club/mnst/get_stakes
 
-2) /height_by_time? - один из моих любимых методов позволяющий определить номер блока который был сутки или неделю назад, или 01 января в 00 часов 00 минут 01 секунду. Метод высвобождает весьма приличный объем ресурсов необходимых для хранения такого бесполезного параметра как время создания блока в своей базе данных и позволяет настроить индекс по номеру блока. Очень полезен для рейтингов и прочих сервисов, которым необходимо сравнение данных к примеру текущих и сутки назад.
+2) mnst/height_by_time? - One of my favorite methods allows determining the block number that was a day or a week ago, or on January 1st at 00:00:01. The method frees up a considerable amount of resources needed to store the seemingly useless parameter of block creation time in its database and allows setting an index based on the block number. It is very useful for rankings and other services that require comparing data, for example, between the current and a day ago.
             https://api-minter.mnst.club/mnst/height_by_time?query=day
             https://api-minter.mnst.club/mnst/height_by_time?query=week
             https://api-minter.mnst.club/mnst/height_by_time?query=2024-01-01T00:00:01Z
 
-3) /address/ - подробный баланс кошелька с учетом всех доступных типов наличия монет։ FREEFLOAT, DELEGATE, WAITLIST, FROZEN, ORDERS, LIQUIDITY        
+3) mnst/address/ - Detailed balance of the wallet, taking into account all available types of coin holdings: FREEFLOAT, DELEGATE, WAITLIST, FROZEN, ORDERS, LIQUIDITY        
             https://api-minter.mnst.club/mnst/address/Mxaa1eb05ade73bc78ad4828f8c78f84c3af4ec1ea
 
-4) /get_coins_info? - мультизапрос информации о монетах по их id. Очень удобный метод позволяющий одним запросом получить общую информацию о нескольких монетах.
-  https://api-minter.mnst.club/mnst/get_coins_info?ids=40,50,80
+4) mnst/coins_info_by_ids? - Multi-query for coin information by their IDs. A very convenient method that allows obtaining comprehensive information about multiple coins with a single request.
+            https://api-minter.mnst.club/mnst/get_coins_info?ids=40,50,80
+   
+5) mnst/coin_info? - A specialized method for obtaining information about a coin in terms of available types of coin holdings. For example, if you need to find out how much HUB is in liquidity pools or placed in orders, you will find this information in the query.
+       https://api-minter.mnst.club/mnst/coin_info?symbol=HUB
 
+       And if you need to find all liquidity pools that contain a specific coin, you can also obtain that information from the query.
+       https://api-minter.mnst.club/mnst/coin_info?symbol=HUB&pools=true
+   
+6) mnst/coins_list - The method will output a list of all coins created in Minter with general information about the coins.
+        https://api-minter.mnst.club/mnst/coins_list
 
-6) /frozzed - еще один метод о котором меня просили многие разработчики. Без дополнительных параметров выдает все "замороженные" средства - unbounds,проверяет есть ли анбоунды по конкретному кошельку или монете.
-            https://api-minter.mnst.club/mnst/frozzed
-            https://api-minter.mnst.club/mnst/frozzed?address=Mxaa1eb05ade73bc78ad4828f8c78f84c3af4ec1ea
-            https://api-minter.mnst.club/mnst/frozzed?coin=MNST
-
-7) /address_balance - подробный баланс кошелька с учетом количества и стоимости всех имеющихся и делегированных монет во все ноды (может использоваться как с параметром height=, так и без)
-                  https://api-minter.mnst.club/mnst/address_balance?address=Mxa64c6e11840b2cdc6a8320342e07b10f69628885
-
-Идеальный метод для сервисов кошельков. Выдает информацию быстро и сразу рассчитывает стоимость каждой кастомной монеты в bip и общую стоимость всех монет на кошельке с учетом делегированных.
-
-Просто идеально. Один запрос и сразу вся нужная информация.
-
-8) /candidate_info - метод позволяющий получить подробную информацию о конкретном кандидате, к примеру MonsterNode. 
-        https://api-minter.mnst.club/mnst/candidate_info?pub_key=Mp46d3d6afe0084fcf530b03d1f4427e516a1cb4ec542640bcbc84c2c4b4f53c13
-
-От предыдущей версии отличается тем что был оптимизирован код и произведено деление кандидатов на 3 типа: 
-
-        a) ноды не отправившие команду set candidat on, отключеные через set candidat off или выпавшие из валидирования по причине падения  (status = 1) в моей терминологии это Кандидат
-
-        б) ноды готовые валидировать, но не проходящие в валидаторы по стейку  (status=2), я называю их Претендент
-
-        в) Активные валидаторы (status = 3), ну валидатор и есть Валидатор.
-
-Напомню что в базовой версии candidate в параметре status только 2 значения.
-
-9) /candidates_info - метод аналогичный предыдущему, но выводит ни одного, а сразу всех кандидатов, валидаторов и претендентов. А можно вывести к примеру только тех кто является валидатором или тех кто готов валидировать, но ему не хватает стейка, для этого можно указать status.
-              https://api-minter.mnst.club/mnst/candidates_info
-               https://api-minter.mnst.club/mnst/candidates_info?status=3
-              https://api-minter.mnst.club/mnst/candidates_info?status=2
-
-10) /nosign - удобен для сбора данных о том кто не подписал конкретный блок. Способ легче и быстрее чем запрашивать всю информацию о блоке и обрабатывать ее. Дополнительно выдает информацию о том кто являлся пропоузером блока когда кто то пропустил.
-                https://api-minter.mnst.club/mnst/nosign?height=1419481
-
-11) /txs_from_block - аналогично предыдущему методу выдает только нужное, что облегчает запрос относительно /block и ускоряет получение данных. Незначительно, но все же на 100к запросов экономия времени составит порядка 35%. Мелочи заметны в тираже.
-                https://api-minter.mnst.club/mnst/txs_from_block?height=1000000
-12) /find_events - поиск eventов по кошельку или PublicKey валидатора, или по тому и другому в конкретном блоке
-
-Мультизапрос удобен тем что можно выводить и парсить не все events сети на конкретный блок, а только те которые необходимы, например по конкретному кошельку или нескольким кошелькам или валидатору, а можно и в комбинированном варианте.
-              https://api-minter.mnst.club/mnst/find_events?height=1425960&find=[%22Mxa64c6e11840b2cdc6a8320342e07b10f69628885%22,%22Mp46d3d6afe0084fcf530b03d1f4427e516a1cb4ec542640bcbc84c2c4b4f53c13%22]
-Фишка запроса что при разумном использовании он быстрее родителя /events раз в 50-100, т.к. обрабатывает и выводит только НЕОБХОДИМЫЕ данные.
-
-13) /grouped_events - Информация по распределению наград с валидирования по конкретному блоку в разрезе валидатора и типов ревардов
-               https://api-minter.mnst.club/mnst/grouped_events?height=1425960
-Один из самый странных запросов, но может быть применим для ряда сервисов для более быстрого и удобного парсинга сгруппированных данных по ревардам. Шустрее родителя раз в 200 за счет того что не выводит слайсы по каждому реварду
+7) mnst/rating - A query providing aggregate information about all nodes in the Minter network.
+        https://api-minter.mnst.club/mnst/rating
+8) mnst/pools_coin_list -  List and parameters of all LP-tokens.
+        https://api-minter.mnst.club/mnst/pools_coin_list
